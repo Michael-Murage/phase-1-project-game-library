@@ -1,0 +1,57 @@
+#header{
+    text-align: center;
+}
+body{
+    background-color: bisque;
+    /* display: flex;
+    flex-direction: column; */
+}
+.menu{
+    font-size: medium;
+    margin-bottom: 3px;
+    display: block;
+}
+#tic-tac-toe{
+    background-color: aqua;
+}
+#rock-ps{
+    background-color: cornsilk;
+}
+#air-hockey{
+    background-color: blanchedalmond;
+}
+#interface{
+    width: 70%;
+    margin: auto;
+    height: 40rem;
+    background-color: white;
+    /* display: flex;
+    justify-content: center; */
+}
+.form{
+    display: block;
+}
+.hidden{
+    display: none;
+}
+.parentGrid {
+    width: 70%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 33.333333333%);
+}
+  .box {
+    /* padding: 10px;
+    background-color: #EFCB68;
+    border-radius: 5px;
+    display: grid;
+    place-items: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+  }
+.box:nth-child(even){
+    background-color: #eee;
+}
+ 
