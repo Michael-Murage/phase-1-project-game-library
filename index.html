@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple game library</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1 id="header">MAIN PAGE</h1>
+    
+    <button id="select">Pick one option below:</button>
+    <div class="menu">
+        <button class="menu hidden" id="tic-tac-toe">Tic tac toe</button>
+        <button class="menu hidden" id="rock-ps">Rock paper scissors</button>
+        <button class="menu hidden" id="air-hockey">Air-hockey</button>
+    </div>
+    <div id="interface">
+
+    </div>
+    <p>Game description:</p>
+
+    <form class="form"> 
+    <label for="review" class="form">You can leave your review here:</label>
+    <textarea id="review" class="form"></textarea>
+    <input type="submit" id="submit" class="form">
+    </form>
+    <script src="./src/tic.js"></script>
+    <script src="./src/test.js"></script>
+</body>
+</html>
