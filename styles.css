@@ -3,8 +3,6 @@
 }
 body{
     background-color: bisque;
-    /* display: flex;
-    flex-direction: column; */
 }
 .menu{
     font-size: medium;
@@ -25,8 +23,6 @@ body{
     margin: auto;
     height: 40rem;
     background-color: white;
-    /* display: flex;
-    justify-content: center; */
 }
 .form{
     display: block;
@@ -41,11 +37,6 @@ body{
     grid-template-columns: repeat(auto-fit, 33.333333333%);
 }
   .box {
-    /* padding: 10px;
-    background-color: #EFCB68;
-    border-radius: 5px;
-    display: grid;
-    place-items: center; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,4 +45,43 @@ body{
 .box:nth-child(even){
     background-color: #eee;
 }
- 
+
+/*Rock paper scissors*/
+
+#rockps-player1{
+    position: absolute;
+    left: 40%;
+}
+
+#rockps-player2{
+    position: absolute;
+    bottom: 0%;
+    left: 40%;
+}
+
+#rockps-player1-score{
+    position: absolute;
+    top: 0%;
+    right: 40%;
+}
+
+.rockpsContainer{
+    width: 70%;
+    height: auto;
+    position: relative;
+}
+#rockps-player2-score{
+    position: absolute;
+    bottom: 0%;
+    right: 40%;
+}
+#player1-img{
+    position: absolute;
+    top: 10%;
+    left: 25%;
+}
+#player2-img{
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+}
