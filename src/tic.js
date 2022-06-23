@@ -100,6 +100,21 @@ function addTictactoeToPage(){
         two.innerText==='O' && five.innerText==='O' && eight.innerText==='O' ||
         four.innerText==='O' && five.innerText==='O' && six.innerText==='O' ){
             state.innerText = 'O wins'
+            fetch('http://localhost:3000/Tic-tac-toe-scores')
+            .then(resp => resp.json())
+            .then((obj)=>{
+                obj.push(`Player O won at ${Date()} time`)
+                fetch('http://localhost:3000/Tic-tac-toe-scores', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(obj)
+                    })
+                    .then(resp => resp.json())
+                    .then(json=>{console.log(json)})
+                })
+            
             return
         }
         else if(one.innerText === 'X' && two.innerText==='X' && three.innerText==="X" ||
@@ -111,8 +126,22 @@ function addTictactoeToPage(){
         two.innerText==='X' && five.innerText==='X' && eight.innerText==='X' ||
         four.innerText==='X' && five.innerText==='X' && six.innerText==='X' ){
             state.innerText = 'X wins'
+            fetch('http://localhost:3000/Tic-tac-toe-scores')
+            .then(resp => resp.json())
+            .then((obj)=>{
+                obj.push(`Player X won at ${Date()} time`)
+                fetch('http://localhost:3000/Tic-tac-toe-scores', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(obj)
+                    })
+                    .then(resp => resp.json())
+                    .then(json=>{console.log(json)})
+                })
+            }
             return 
         }
 
     }
-}

@@ -60,8 +60,7 @@ hockey.addEventListener('click', ()=>{
         //Game end
         if(currentPos[1] <= 0 || currentPos[1] >= 100){
             changeDir()
-            console.log('you lose')
-            document.removeEventListener('keydown', movePlayer)
+            
         }
    }
    
