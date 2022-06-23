@@ -16,6 +16,12 @@ const paper = document.createElement('img')
 paper.setAttribute('src', './assets/paper.jpg')
 
 
+const apiURL = 'https://rock-paper-scissors13.p.rapidapi.com/'
+const requestHeaders = {
+    'X-RapidAPI-Key': '0152370c25mshbc3124e759061cap165d31jsn71e77ed9a1a4',
+    'X-RapidAPI-Host': 'rock-paper-scissors13.p.rapidapi.com'
+  }
+
 function addRockpsToPage(){
     startRockps()
     hideMenu()
@@ -98,33 +104,58 @@ function addRockpsToPage(){
     startRockps()
     const possibleClicks = document.querySelectorAll('.rps-buttons')
 
+    let userPlay, data, formattedData
+
     possibleClicks.forEach(possibleClick => possibleClick.addEventListener('click', (e) => {
         if(e.target.matches('#rock-button2')){
            player2Img.src = './assets/rock.jpeg'
+           userPlay = 'rock'
         }
         else if(e.target.matches('#paper-button2')){
             player2Img.src = './assets/paper.jpg'
+            userPlay = 'paper'
         }
         else if(e.target.matches('#player-2-scissors')){
             player2Img.src = './assets/scissors.jpg'
+            userPlay = 'scissors'
         }
-        compChoice()
-        results()
+
+        data = {
+            choice: userPlay
+        }
+
+        formattedData = Qs.stringify(data)
+
+        axios.post(apiURL, formattedData, {
+            headers: requestHeaders
+        })
+        .then(resp => {
+            const data = resp.data
+            apiCallback(data)
+        })
+        .catch(err => console.error(err))
+        //compChoice()
+        //results()
      }))
 
-     function compChoice(){
-        const randomNum = Math.floor(Math.random() * possibleClicks.length) + 1;
-        console.log(possibleClicks.length)
-        if(randomNum === 1 || randomNum === 4){
-            player1Img.src = './assets/rock.jpeg'
-        }
-        else if(randomNum === 2 || randomNum === 5){
-            player1Img.src = './assets/paper.jpg'
-        }
-        else if(randomNum === 3 || randomNum === 6){
-            player1Img.src = './assets/scissors.jpg'
-        }
-    }
+     function apiCallback(data){
+        console.log(data)
+     }
+
+
+    //  function compChoice(){
+    //     const randomNum = Math.floor(Math.random() * possibleClicks.length) + 1;
+    //     console.log(possibleClicks.length)
+    //     if(randomNum === 1 || randomNum === 4){
+    //         player1Img.src = './assets/rock.jpeg'
+    //     }
+    //     else if(randomNum === 2 || randomNum === 5){
+    //         player1Img.src = './assets/paper.jpg'
+    //     }
+    //     else if(randomNum === 3 || randomNum === 6){
+    //         player1Img.src = './assets/scissors.jpg'
+    //     }
+    // }
 
 }
 
@@ -133,31 +164,22 @@ function startRockps(){
     div.classList.add('rockpsContainer')
 }
 
+//  function results(){
+//      if(player1Img.src === player2Img.src){
+//          checkWinDisp.innerText = 'It\'s a draw'
+//       }else if(player1Img.src === rock.src && player2Img.src === scissors.src){
+//         checkWinDisp.innerText = 'You lose'
+//      }else if(player1Img.src === rock.src && player2Img.src === paper.src){
+//         checkWinDisp.innerText = 'You win'
+//     }else if(player1Img.src === paper.src && player2Img.src === scissors.src){
+//         checkWinDisp.innerText = 'You win'
+//     }else if(player1Img.src === paper.src && player2Img.src === rock.src){
+//         checkWinDisp.innerText = 'You lose'
+//     }else if(player1Img.src === scissors.src && player2Img.src === rock.src){
+//         checkWinDisp.innerText = 'You win'
+//     }else if(player1Img.src === scissors.src && player2Img.src === paper.src){
+//         checkWinDisp.innerText = 'You lose'
+//     }
 
-
-
-
-
-
-
-
-
- function results(){
-     if(player1Img.src === player2Img.src){
-         checkWinDisp.innerText = 'It\'s a draw'
-      }else if(player1Img.src === rock.src && player2Img.src === scissors.src){
-        checkWinDisp.innerText = 'You lose'
-     }else if(player1Img.src === rock.src && player2Img.src === paper.src){
-        checkWinDisp.innerText = 'You win'
-    }else if(player1Img.src === paper.src && player2Img.src === scissors.src){
-        checkWinDisp.innerText = 'You win'
-    }else if(player1Img.src === paper.src && player2Img.src === rock.src){
-        checkWinDisp.innerText = 'You lose'
-    }else if(player1Img.src === scissors.src && player2Img.src === rock.src){
-        checkWinDisp.innerText = 'You win'
-    }else if(player1Img.src === scissors.src && player2Img.src === paper.src){
-        checkWinDisp.innerText = 'You lose'
-    }
-
- }
+//  }
 
