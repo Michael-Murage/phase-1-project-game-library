@@ -1,5 +1,7 @@
 select.addEventListener('click', unHideMenu)
 let timer
+let xDir = 2
+let yDir = 2
 hockey.addEventListener('click', ()=>{
     startAirHockey()
     hideMenu()
@@ -22,42 +24,67 @@ hockey.addEventListener('click', ()=>{
     div.appendChild(ball);
     
     timer = setInterval( (function(){
-        currentPos[0] += 2
-        currentPos[1] += 2
+        currentPos[0] += xDir
+        currentPos[1] += yDir
         placeball(ball, currentPos)
+        checkWall()
     }) , 50)
     
 
-    document.addEventListener('keydown', (e)=>{
-        if(e.key === 'ArrowLeft'){
-            movePlayer1Left()
-        }
-        if(e.key === 'ArrowRight'){
-            movePlayer1Right()
-        }
-        if(e.key === 'a'){
-            movePlayer2Left()
-        }
-        if(e.key === 'd'){
-            movePlayer2Right()
-        }
-    })
+    document.addEventListener('keydown', movePlayer)
     
+    function checkWall(){
+        if(currentPos[0] >= (100 - 5) ||
+        
+        currentPos[0] <= 0){
+           changeDir()
+        }
+   
+        //Game end
+       //  if(x){}
+   }
+   
+   function changeDir(){
+       if(xDir === 2 && yDir === 2){
+           yDir = -2
+           return
+       }
+       if(xDir === 2 && yDir === -2){
+           xDir = -2
+           return
+       }
+       if(xDir === -2 && yDir === -2){
+           yDir = 2
+           return
+       }
+       if(xDir === -2 && yDir === 2){
+           xDir = 2
+           return
+       }
+   }
+   
     
-    // setInterval(moveBall, 1000)
-
-    // document.querySelectorAll('.button').forEach(button=>{
-    //     button.addEventListener('click', buttonAction)
-    // })
 })
+
+function movePlayer(e){
+    if(e.key === 'ArrowLeft'){
+        movePlayer1Left()
+    }
+    if(e.key === 'ArrowRight'){
+        movePlayer1Right()
+    }
+    if(e.key === 'a'){
+        movePlayer2Left()
+    }
+    if(e.key === 'd'){
+        movePlayer2Right()
+    }
+}
 
 function startAirHockey(){
     div.id = 'hockey-grid'
 }
 
-function checkWall(){
-     
-}
 
 
 function placeball(elem, arr){
