@@ -19,8 +19,18 @@ function hideMenu(){
 }
 
 
-let one, two, three, four, five, six, seven, eight, nine;
+let one, two, three, four, five, six, seven, eight, nine, turn;
 let randomArr = [];
+
+function stopTictactoe(){
+    div.classList.remove('parentGrid')
+    div.classList.add('#interface')
+}
+
+function startTictactoe(){
+    div.classList.remove('#interface')
+    div.classList.add('parentGrid')
+}
 
 tic.addEventListener('click', addTictactoeToPage)
 
@@ -44,150 +54,33 @@ function addTictactoeToPage(){
     nine = document.getElementById('9')
     
     let box = document.querySelectorAll('.box')
-    // div.addEventListener('click', addPlayer1)
-    // div.addEventListener('click', add)
-    box.forEach(b => b.addEventListener('click', (e)=>{
-        const firstChoice = valueId()
-        let userChoice1 = generateUserChoice(e)
-        
-        if(randomArr.length === 1){
-            delete firstChoice[`${userChoice1}`]
-            let compChoice1 = parseFloat(randomise(firstChoice))
-            let compChoice1Elem = document.getElementById(`${compChoice1}`)
-            compChoice1Elem.textContent = 'O'
-            delete firstChoice[`${compChoice1}`]
-        }
-        
-        
-        let userChoice2 = generateUserChoice(e)
-        console.log(randomArr)
-        if(randomArr.length === 2){
-            delete firstChoice[`${userChoice2}`]
-            let compChoice2 = parseFloat(randomise(firstChoice))
-            let compChoice2Elem = document.getElementById(`${compChoice2}`)
-            compChoice2Elem.textContent = 'O'
-            delete firstChoice[`${compChoice2}`]
-        }
-        
-        let userChoice3 = generateUserChoice(e)
-        console.log(randomArr)
-        if(randomArr.length === 3){
-            
-            delete firstChoice[`${userChoice3}`]
-            let compChoice3 = parseFloat(randomise(firstChoice))
-            let compChoice3Elem = document.getElementById(`${compChoice3}`)
-            compChoice3Elem.textContent = 'O'
-            delete firstChoice[`${compChoice3}`]
-        }
-        let userChoice4 = generateUserChoice(e)
-        
-        if(randomArr.length === 4){
-            
-            delete firstChoice[`${userChoice4}`]
-            let compChoice4 = parseFloat(randomise(firstChoice))
-            let compChoice4Elem = document.getElementById(`${compChoice4}`)
-            compChoice4Elem.textContent = 'O'
-            delete firstChoice[`${compChoice4}`]
-        }
-}))
+    let firstChoice
 }
+    //First play
+    //div.addEventListener('click', playFirst)
 
-
-function randomise(obj){
-    let keys = []
-    for(let prop in obj){
-        if(obj.hasOwnProperty(prop)){
-            keys.push(prop)
+    function checkWin(){
+        if(one.innerText === 'O' && two.innerText==='O' && three.innerText==="O" ||
+        one.innerText==='O' && four.innerText==='O' && seven.innerText==='O' ||
+        one.innerText==='O' && five.innerText==='O' && nine.innerText==='O' ||
+        three.innerText==='O' && six.innerText==='O' && nine.innerText==='O' ||
+        three.innerText==='O' && five.innerText==='O' && seven.innerText==='O' ||
+        seven.innerText==='O' && eight.innerText==='O' && nine.innerText==='O' ||
+        two.innerText==='O' && five.innerText==='O' && eight.innerText==='O' ||
+        four.innerText==='O' && five.innerText==='O' && six.innerText==='O' ){
+            return 'Lose'
+        }
+        else if(one.innerText === 'X' && two.innerText==='X' && three.innerText==="X" ||
+        one.innerText==='X' && four.innerText==='X' && seven.innerText==='X' ||
+        one.innerText==='X' && five.innerText==='X' && nine.innerText==='X' ||
+        three.innerText==='X' && six.innerText==='X' && nine.innerText==='X' ||
+        three.innerText==='X' && five.innerText==='X' && seven.innerText==='X' ||
+        seven.innerText==='X' && eight.innerText==='X' && nine.innerText==='X' ||
+        two.innerText==='X' && five.innerText==='X' && eight.innerText==='X' ||
+        four.innerText==='X' && five.innerText==='X' && six.innerText==='X' ){
+            return 'Win'
         }
     }
-    return keys[keys.length * Math.random() << 0]
-}
 
-// function addPlayer1(e){
-//     if(e.target.innerText === ''){
-//         e.target.innerText = 'X'
-//     }
-//     console.log(e)
-// }
-
-function generateUserChoice(e){
-    if(e.target.innerText === ''){
-        e.target.innerText = 'X'
-    }
-    if(e.target.innerText === 'X'){
-        randomArr.push('X')
-    }
-}
-
-// function addPlayer2(e){
-//     if(e.target.innerText === ''){
-//         e.target.innerText = 'O'
-//     }
-// }
-
-// function generateUser2Choice(){
-//     div.addEventListener('click', (e)=>{
     
-// })
-// }
-
-function checkWin(){
     
-}
-
-
-
-function stopTictactoe(){
-    div.classList.remove('parentGrid')
-    div.classList.add('#interface')
-}
-
-function startTictactoe(){
-    div.classList.remove('#interface')
-    div.classList.add('parentGrid')
-}
-
-
-
-// let userChoice1 = generateUserChoice(e)
-//         const firstChoice = valueId()
-//         delete firstChoice[`${userChoice1}`]
-//         let compChoice1 = parseFloat(randomise(firstChoice))
-//         let compChoice1Elem = document.getElementById(`${compChoice1}`)
-//         compChoice1Elem.textContent = 'O'
-//         delete firstChoice[`${compChoice1}`]
-        
-//         let userChoice2 = generateUserChoice(e)
-//         delete firstChoice[`${userChoice2}`]
-//         let compChoice2 = parseFloat(randomise(firstChoice))
-//         let compChoice2Elem = document.getElementById(`${compChoice2}`)
-//         compChoice2Elem.textContent = 'O'
-//         delete firstChoice[`${compChoice2}`]
-        
-//         let userChoice3 = generateUserChoice(e)
-//         delete firstChoice[`${userChoice3}`]
-//         let compChoice3 = parseFloat(randomise(firstChoice))
-//         let compChoice3Elem = document.getElementById(`${compChoice3}`)
-//         compChoice3Elem.textContent = 'O'
-//         delete firstChoice[`${compChoice3}`]
-
-//         let userChoice4 = generateUserChoice(e)
-//         delete firstChoice[`${userChoice4}`]
-//         let compChoice4 = parseFloat(randomise(firstChoice))
-//         let compChoice4Elem = document.getElementById(`${compChoice4}`)
-//         compChoice4Elem.textContent = 'O'
-//         delete firstChoice[`${compChoice4}`]
-
-function valueId(){
-    return{
-        1: 'one',
-        2: "two",
-        3: 'three',
-        4: 'four',
-        5: 'five',
-        6: 'six',
-        7: 'seven',
-        8: 'eight',
-        9: 'nine'
-    }
-}
