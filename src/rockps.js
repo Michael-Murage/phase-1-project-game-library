@@ -1,5 +1,5 @@
-select.addEventListener('click', unHideMenu)
-rockps.addEventListener('click', addRockpsToPage)
+select.addEventListener('click', unHideMenu, {once:true})
+rockps.addEventListener('click', addRockpsToPage, {once:true})
 
 // const rockpsContainer = document.getElementById('interface')
 let player1Disp, player1Score, player2Disp, player2Score, player1Img, player2Img,
@@ -18,6 +18,7 @@ paper.setAttribute('src', './assets/paper.jpg')
 
 function addRockpsToPage(){
     startRockps()
+    hideMenu()
     player1Disp = document.createElement('p')
     player1Disp.id = 'rockps-player1'
     player1Disp.textContent = 'Player 1: '

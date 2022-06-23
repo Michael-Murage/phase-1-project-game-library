@@ -21,7 +21,7 @@ body{
 #interface{
     width: 70%;
     margin: auto;
-    height: 40rem;
+    height: 25rem;
     background-color: white;
 }
 .form{
@@ -31,10 +31,9 @@ body{
     display: none;
 }
 .parentGrid {
-    width: 70%;
-    height: 70%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 33.333333333%);
+    
 }
   .box {
     display: flex;
@@ -140,24 +139,28 @@ body{
     position: relative;
     left: 15%;
     width: 70%;
-    height: 40rem;
+    height: 30rem;
     background-color: black;
     
 }
 
 #plate1{
-    width: 50px;
-    height: 20px;
+    width: 10%;
+    height: 5%;
     position: absolute;
-    left: 46%;
-    top: 5.5%;
+    
     background-color: lightsalmon;
 }
 #plate2{
-    width: 50px;
-    height: 20px;
+    width: 10%;
+    height: 5%;
     position: absolute;
-    left: 46%;
-    bottom: 5.5%;
     background-color: lightsalmon;
+}
+.ball{
+    width: 7.5%;
+    height: 7.5%;
+    border-radius: 2rem;
+    background-color: goldenrod;
+    position: absolute;
 }

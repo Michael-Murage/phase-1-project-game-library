@@ -8,6 +8,7 @@ hockey.addEventListener('click', ()=>{
     const blockPlate1 = document.createElement('div')
     blockPlate1.id = 'plate1'
     blockPlate1.style.left = '46%'
+    blockPlate1.style.bottom = '100%'
     div.appendChild(blockPlate1)
 
     const blockPlate2 = document.createElement('div')
@@ -28,20 +29,40 @@ hockey.addEventListener('click', ()=>{
         currentPos[1] += yDir
         placeball(ball, currentPos)
         checkWall()
+        
     }) , 50)
     
 
     document.addEventListener('keydown', movePlayer)
     
+
     function checkWall(){
-        if(currentPos[0] >= (100 - 5) ||
-        
+        //check wall
+        if(currentPos[0] >= 95||
+            currentPos[1] >= 95 ||
         currentPos[0] <= 0){
            changeDir()
         }
+        //check plates
+        if((currentPos[0] > (parseFloat(blockPlate2.style.left.slice(0,2))) && 
+        currentPos[0] < ((parseFloat(blockPlate2.style.left.slice(0,2))) + 10)) &&
+        (currentPos[1] > (parseFloat(blockPlate2.style.left.slice(0,2))) && 
+        currentPos[1] < ((parseFloat(blockPlate2.style.left.slice(0,2))) + 5))){
+            changeDir()
+        }
+        if((currentPos[0] > (parseFloat(blockPlate1.style.left.slice(0,2))) && 
+        currentPos[0] < (parseFloat(blockPlate1.style.left.slice(0,2))) + 10) &&
+        (currentPos[1] > (parseFloat(blockPlate1.style.left.slice(0,2))) && 
+        currentPos[1] < (parseFloat(blockPlate1.style.left.slice(0,2))) + 5)){
+            changeDir()
+        }
    
         //Game end
-       //  if(x){}
+        if(currentPos[1] <= 0 || currentPos[1] >= 100){
+            changeDir()
+            console.log('you lose')
+            document.removeEventListener('keydown', movePlayer)
+        }
    }
    
    function changeDir(){
