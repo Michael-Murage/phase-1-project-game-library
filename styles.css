@@ -18,7 +18,7 @@ body{
 #air-hockey{
     background-color: blanchedalmond;
 }
-#interface{
+.interface{
     width: 70%;
     margin: auto;
     height: 25rem;
@@ -32,6 +32,8 @@ body{
 }
 .parentGrid {
     display: grid;
+    /* width: 70%;
+    height: 30rem; */
     grid-template-columns: repeat(auto-fit, 33.333333333%);
     
 }
@@ -74,8 +76,10 @@ body{
 
 .rockpsContainer{
     width: 70%;
-    height: auto;
+    height: 40rem;
     position: relative;
+    background-color: burlywood;
+    text-align: center;
 }
 #rockps-player2-score{
     position: absolute;
@@ -87,14 +91,14 @@ body{
     height: 30%;
     position: absolute;
     top: 10%;
-    left: 35%;
+    left: 28%;
 }
 #player2-img{
     width: 30%;
     height: 30%;
     position: absolute;
     bottom: 10%;
-    left: 35%;
+    left: 28%;
 }
 .rps-buttons{
     background-color: blue;

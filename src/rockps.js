@@ -17,6 +17,7 @@ scissors.setAttribute('src', './assets/scissors.jpg')
 const paper = document.createElement('img')
 paper.setAttribute('src', './assets/paper.jpg')
 
+const desc = document.getElementById('desc')
 
 const apiURL = 'https://rock-paper-scissors13.p.rapidapi.com/'
 const requestHeaders = {
@@ -100,6 +101,19 @@ function addRockpsToPage(){
     checkWinDisp.textContent = 'Whenever you\'re ready...'
     div.appendChild(checkWinDisp)
 
+    fetch("http://localhost:3000/Rockps-description", {
+        method: "GET",
+        headers:
+        {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        }
+    })
+    .then(resp => resp.json())
+    .then(json =>{
+        desc.innerText = `${desc.innerText} ${json.desc}`
+    })
+
     player1Img = document.getElementById('player1-img')
     player2Img = document.getElementById('player2-img')
 
@@ -131,7 +145,7 @@ function addRockpsToPage(){
 
         formattedData = JSON.stringify(data)
 
-        fetch('https://rock-paper-scissors13.p.rapidapi.com/?choice=paper', {
+        fetch(`https://rock-paper-scissors13.p.rapidapi.com/?choice=${userPlay}`, {
             method: "GET",
             headers: requestHeaders
         })

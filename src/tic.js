@@ -1,10 +1,12 @@
-const div = document.getElementById('interface')
+const div = document.querySelector('.interface')
 const select = document.getElementById('select')
 const tic = document.getElementById('tic-tac-toe')
 const rockps = document.getElementById('rock-ps')
 const hockey = document.getElementById('air-hockey')
 const header = document.getElementById('header')
-
+const review = document.getElementById('review')
+const submit = document.getElementById('submit')
+const form = document.querySelector('form')
 
 select.addEventListener('click', unHideMenu, {once:true})
 
@@ -24,12 +26,14 @@ let one, two, three, four, five, six, seven, eight, nine, xturn;
     
 function stopTictactoe(){
     div.classList.remove('parentGrid')
-    div.classList.add('#interface')
+    div.classList.add('interface')
 }
 
 function startTictactoe(){
-    div.classList.remove('#interface')
+    div.classList.remove('interface')
     div.classList.add('parentGrid')
+
+    
 }
 
 
@@ -48,6 +52,7 @@ function addTictactoeToPage(){
     let container = document.querySelector('.parentGrid')
     container.style.width = '30rem'
     container.style.height = '30rem'
+   
 
     let state = document.createElement('p')
     state.textContent = 'Letter O starts the game'
@@ -55,6 +60,16 @@ function addTictactoeToPage(){
 
     
     hideMenu()
+    fetch('http://localhost:3000/Tic-tac-toe-description', {
+            method: "GET",
+            headers: requestHeaders
+        })
+        .then(resp => resp.json())
+        .then(json=>{
+           desc.innerText = `${desc.innerText} ${json.desc}`
+        })
+        .catch(err => console.error(err))
+
     one = document.getElementById('1')
     two = document.getElementById('2')
     three = document.getElementById('3')
@@ -100,20 +115,23 @@ function addTictactoeToPage(){
         two.innerText==='O' && five.innerText==='O' && eight.innerText==='O' ||
         four.innerText==='O' && five.innerText==='O' && six.innerText==='O' ){
             state.innerText = 'O wins'
-            fetch('http://localhost:3000/Tic-tac-toe-scores')
+            fetch("http://localhost:3000/Tic-tac-toe-scores", {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "O": `Won at ${Date()}`
+            })
+            })
             .then(resp => resp.json())
-            .then((obj)=>{
-                obj.push(`Player O won at ${Date()} time`)
-                fetch('http://localhost:3000/Tic-tac-toe-scores', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type' : 'application/json'
-                    },
-                    body : JSON.stringify(obj)
-                    })
-                    .then(resp => resp.json())
-                    .then(json=>{console.log(json)})
-                })
+            .then(json =>{
+                state.innerText = "O wins"
+                console.log(json)
+            })
+            .catch(err => {console.error(err)})
             
             return
         }
@@ -126,22 +144,24 @@ function addTictactoeToPage(){
         two.innerText==='X' && five.innerText==='X' && eight.innerText==='X' ||
         four.innerText==='X' && five.innerText==='X' && six.innerText==='X' ){
             state.innerText = 'X wins'
-            fetch('http://localhost:3000/Tic-tac-toe-scores')
+            fetch("http://localhost:3000/Tic-tac-toe-scores", {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "X": `Won at ${Date()}`
+            })
+            })
             .then(resp => resp.json())
-            .then((obj)=>{
-                obj.push(`Player X won at ${Date()} time`)
-                fetch('http://localhost:3000/Tic-tac-toe-scores', {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type' : 'application/json'
-                    },
-                    body : JSON.stringify(obj)
-                    })
-                    .then(resp => resp.json())
-                    .then(json=>{console.log(json)})
-                })
-            }
+            .then(json =>{
+                console.log(json)
+            })
+            .catch(err => {console.error(err)})
             return 
         }
 
     }
+}
