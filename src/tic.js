@@ -10,6 +10,7 @@ const form = document.querySelector('form')
 
 select.addEventListener('click', unHideMenu, {once:true})
 
+//hide or unhide dropdown menu
 function unHideMenu(){
     tic.classList.remove('hidden')
     rockps.classList.remove('hidden')
@@ -23,12 +24,14 @@ function hideMenu(){
 }
 
 let one, two, three, four, five, six, seven, eight, nine, xturn;
-    
+
+// Havent found a place for this function yet
 function stopTictactoe(){
     div.classList.remove('parentGrid')
     div.classList.add('interface')
 }
 
+// Displays the grid for the game along with the game description
 function startTictactoe(){
     div.classList.remove('interface')
     div.classList.add('parentGrid')
@@ -61,7 +64,7 @@ function startTictactoe(){
 
 tic.addEventListener('click', addTictactoeToPage, {once:true})
 
-
+// Incoporates the addition of the game components and enables players to start once invoked
 function addTictactoeToPage(){
     startTictactoe()
     for(let i=1; i<=9; i++){
@@ -107,6 +110,7 @@ function addTictactoeToPage(){
         box.addEventListener('click', handleClick, {once : true})
     })
 
+    // Handles what happens once player clicks on a box
     function handleClick(e){
         const elem = e.target
         const decision = xturn ? elem.innerText = 'X' : elem.innerText = 'O'
@@ -123,10 +127,13 @@ function addTictactoeToPage(){
         elem.dec
     }
 
+    // Enables a switch of turns
     function changeDecision(){
         xturn = !xturn
     }
 
+
+    // Checks for the winning combination
     function checkWin(){
         if(one.innerText === 'O' && two.innerText==='O' && three.innerText==="O" ||
         one.innerText==='O' && four.innerText==='O' && seven.innerText==='O' ||

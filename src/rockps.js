@@ -25,9 +25,18 @@ const requestHeaders = {
     'X-RapidAPI-Host': 'rock-paper-scissors13.p.rapidapi.com'
   }
 
+/* Incoporates: the hiding of the dropdown menu after click
+the adding of elements to the page along with some additional styling and assignment
+start of the game
+fetching of the description to the game
+*/
 function addRockpsToPage(){
     startRockps()
     hideMenu()
+
+    /*The ludicrously long train of lines of code below adds individual elements
+    like the buttons and images to the container where the game takes place
+    */ 
     player1Disp = document.createElement('p')
     player1Disp.id = 'rockps-player1'
     player1Disp.textContent = 'Computer: '
@@ -163,6 +172,7 @@ function addRockpsToPage(){
         //results()
      }))
 
+     //Evaluates what image to be displayed after the API AI has made its decision
      function aiChoice(play, pred){
         if(play === 'rock'){
             player1Img.src = './assets/rock.jpeg'
@@ -176,7 +186,7 @@ function addRockpsToPage(){
         }
      }
 
-
+     // Was supposed to handle the scores being sent over to the database in form of data
      function feedScore(pred){
         let feed
         if(pred === "You win"){
@@ -238,6 +248,8 @@ function addRockpsToPage(){
 
 }
 
+
+// Adds the game "container" and fetches game description
 function startRockps(){
     div.classList.remove('interface')
     div.classList.add('rockpsContainer')
