@@ -192,20 +192,32 @@ function addRockpsToPage(){
                 "Player": `Is a draw at ${Date()}`
             }
         }
-        fetch("http://localhost:3000/Rock-paper-scissors-scores", {
-            method: "POST",
-            headers:
-            {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify(feed)
-            })
-            .then(resp => resp.json())
-            .then(json =>{
-                console.log(json)
-            })
-            .catch(err => {console.error(err)})
+
+        // document.addEventListener('click', (e)=>{
+        //     if(pred){
+        //         fetchScore()
+        //     }
+        //     return
+        // })
+
+        // function fetchScore(){
+        //     //e.preventDefault()
+        //     fetch("http://localhost:3000/Rock-paper-scissors-scores", {
+        //         method: "POST",
+        //         headers:
+        //         {
+        //             "Content-Type": "application/json",
+        //             Accept: "application/json"
+        //         },
+        //         body: JSON.stringify(feed)
+        //         })
+        //         .then(resp => resp.json())
+        //         .then(json =>{
+        //             console.log(json)
+        //             //document.removeEventListener('submit', fetchScore)
+        //         })
+        //         .catch(err => {console.error(err)})
+        // }
 
      }
 
