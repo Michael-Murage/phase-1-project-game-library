@@ -6,10 +6,10 @@ meant to be simple to play:
 
 Summary:
 What's working: 
-> AI that takes the opponent's place as the computer to make valid guesses
-> Functionality
-> API where the AI is coming from
-> The reviews and description work perfectly
+-> AI that takes the opponent's place as the computer to make valid guesses
+-> Functionality
+-> API where the AI is coming from
+-> The reviews and description work perfectly
 
 What's not working:
 > Player vs player 
