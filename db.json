@@ -28,6 +28,15 @@
     "desc": "The game is all about X's and O's. You altenately pick an X/O with the aim of matching your letter on 3 consecutive squares, that is, squares [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9] and [3,5,7]"
   },
   "Tic-tac-toe-reviews": [
-    {}
+    {
+      "id": 1,
+      "user": "This is a test review",
+      "time": "Fri Jun 24 2022 05:00:55 GMT+0300 (East Africa Time)"
+    },
+    {
+      "user": "not bad",
+      "time": "Fri Jun 24 2022 06:27:42 GMT+0300 (East Africa Time)",
+      "id": 2
+    }
   ]
 }

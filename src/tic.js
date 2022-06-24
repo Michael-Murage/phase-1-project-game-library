@@ -33,7 +33,29 @@ function startTictactoe(){
     div.classList.remove('interface')
     div.classList.add('parentGrid')
 
-    
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        fetch("http://localhost:3000/Tic-tac-toe-reviews", {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "user": `${review.value}`,
+                "time": `${Date()}`
+            })
+            })
+            .then(resp => resp.json())
+            .then(json =>{
+                alert('Thankyou, your review has been added successfully')
+                console.log(json)
+            })
+            .catch(err => {console.error(err)})
+
+        form.reset()
+    })
 }
 
 
