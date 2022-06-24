@@ -30,12 +30,12 @@ function addRockpsToPage(){
     hideMenu()
     player1Disp = document.createElement('p')
     player1Disp.id = 'rockps-player1'
-    player1Disp.textContent = 'Player 1: '
+    player1Disp.textContent = 'Computer: '
     div.appendChild(player1Disp)
 
     player2Disp = document.createElement('p')
     player2Disp.id = 'rockps-player2'
-    player2Disp.textContent = 'Player 2:'
+    player2Disp.textContent = 'Player :'
     div.appendChild(player2Disp)
 
     player1Score = document.createElement('p')
@@ -123,6 +123,7 @@ function addRockpsToPage(){
     let userPlay, data, formattedData
 
     possibleClicks.forEach(possibleClick => possibleClick.addEventListener('click', (e) => {
+        //e.preventDefault()
         if(e.target.matches('#rock-button2')){
            player2Img.src = './assets/rock.jpeg'
            checkWinDisp.innerText = 'Loading AI choice...'
@@ -155,6 +156,7 @@ function addRockpsToPage(){
             let predicament = json.result
             console.log(predicament)
             aiChoice(json.ai.name, json.result)
+            feedScore(predicament)
         })
         .catch(err => console.error(err))
         //compChoice()
@@ -172,6 +174,39 @@ function addRockpsToPage(){
             player1Img.src = './assets/scissors.jpg'
             checkWinDisp.innerText = pred
         }
+     }
+
+
+     function feedScore(pred){
+        let feed
+        if(pred === "You win"){
+            feed = {
+                "Player": `Won at ${Date()}`
+            }
+        }else if(pred === "You lose"){
+            feed = {
+                "Player": `Lost at ${Date()}` 
+            }
+        }else if(pred === "Draw"){
+            feed = {
+                "Player": `Is a draw at ${Date()}`
+            }
+        }
+        fetch("http://localhost:3000/Rock-paper-scissors-scores", {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(feed)
+            })
+            .then(resp => resp.json())
+            .then(json =>{
+                console.log(json)
+            })
+            .catch(err => {console.error(err)})
+
      }
 
 
@@ -194,6 +229,30 @@ function addRockpsToPage(){
 function startRockps(){
     div.classList.remove('interface')
     div.classList.add('rockpsContainer')
+
+    form.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        fetch("http://localhost:3000/Rockps-reviews", {
+            method: "POST",
+            headers:
+            {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "user": `${review.value}`,
+                "time": `${Date()}`
+            })
+            })
+            .then(resp => resp.json())
+            .then(json =>{
+                alert('Thankyou, your review has been added successfully')
+                console.log(json)
+            })
+            .catch(err => {console.error(err)})
+
+        form.reset()
+    })
 }
 
 //  function results(){

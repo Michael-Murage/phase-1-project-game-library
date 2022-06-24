@@ -1,10 +1,32 @@
 {
-  "Rock-paper-scissors-scores": [],
+  "Rock-paper-scissors-scores": [
+    {
+      "id": 1,
+      "Player": "Won at Fri Jun 24 2022 04:46:01 GMT+0300 (East Africa Time)"
+    },
+    {
+      "Player": "Lost at Fri Jun 24 2022 07:03:12 GMT+0300 (East Africa Time)",
+      "id": 2
+    },
+    {
+      "Player": "Is a draw at Fri Jun 24 2022 07:06:48 GMT+0300 (East Africa Time)",
+      "id": 3
+    }
+  ],
   "Rockps-description": {
     "desc": "The game is of simple pick procedure between ROCK, PAPER and SCISSORS. Rock wins against scissors and loses against paper. Paper loses against scissors wins against rock. Scissors wins against paper loses against rock"
   },
   "Rockps-reviews": [
-    {}
+    {
+      "id": 1,
+      "user": "This is a test review",
+      "time": "Fri Jun 24 2022 05:00:55 GMT+0300 (East Africa Time)"
+    },
+    {
+      "user": "testing testing 1,2,3",
+      "time": "Fri Jun 24 2022 06:37:57 GMT+0300 (East Africa Time)",
+      "id": 2
+    }
   ],
   "Tic-tac-toe-scores": [
     {

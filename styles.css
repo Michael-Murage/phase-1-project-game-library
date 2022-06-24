@@ -35,7 +35,6 @@ body{
     /* width: 70%;
     height: 30rem; */
     grid-template-columns: repeat(auto-fit, 33.333333333%);
-    
 }
   .box {
     display: flex;
@@ -79,7 +78,7 @@ body{
     height: 40rem;
     position: relative;
     background-color: burlywood;
-    text-align: center;
+    left: 15%;
 }
 #rockps-player2-score{
     position: absolute;
