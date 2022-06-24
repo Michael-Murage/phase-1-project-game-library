@@ -1,5 +1,7 @@
+// import axios from "axios";
 select.addEventListener('click', unHideMenu, {once:true})
 rockps.addEventListener('click', addRockpsToPage, {once:true})
+
 
 // const rockpsContainer = document.getElementById('interface')
 let player1Disp, player1Score, player2Disp, player2Score, player1Img, player2Img,
@@ -101,45 +103,61 @@ function addRockpsToPage(){
     player1Img = document.getElementById('player1-img')
     player2Img = document.getElementById('player2-img')
 
-    startRockps()
     const possibleClicks = document.querySelectorAll('.rps-buttons')
 
+    
     let userPlay, data, formattedData
 
     possibleClicks.forEach(possibleClick => possibleClick.addEventListener('click', (e) => {
         if(e.target.matches('#rock-button2')){
            player2Img.src = './assets/rock.jpeg'
-           userPlay = 'rock'
+           checkWinDisp.innerText = 'Loading AI choice...'
+           userPlay = "rock"
         }
         else if(e.target.matches('#paper-button2')){
             player2Img.src = './assets/paper.jpg'
-            userPlay = 'paper'
+            checkWinDisp.innerText = 'Loading AI choice...'
+            userPlay = "paper"
         }
-        else if(e.target.matches('#player-2-scissors')){
+        else if(e.target.matches('#sciss-button2')){
             player2Img.src = './assets/scissors.jpg'
-            userPlay = 'scissors'
+            checkWinDisp.innerText = 'Loading AI choice...'
+            userPlay = "scissors"
         }
 
         data = {
-            choice: userPlay
+            "choice": `${userPlay}`
         }
 
-        formattedData = Qs.stringify(data)
+        formattedData = JSON.stringify(data)
 
-        axios.post(apiURL, formattedData, {
+        fetch('https://rock-paper-scissors13.p.rapidapi.com/?choice=paper', {
+            method: "GET",
             headers: requestHeaders
         })
-        .then(resp => {
-            const data = resp.data
-            apiCallback(data)
+        .then(resp => resp.json())
+        .then(json=>{
+            console.log(json.ai.name)
+            let predicament = json.result
+            console.log(predicament)
+            aiChoice(json.ai.name, json.result)
         })
         .catch(err => console.error(err))
         //compChoice()
         //results()
      }))
 
-     function apiCallback(data){
-        console.log(data)
+     function aiChoice(play, pred){
+        if(play === 'rock'){
+            player1Img.src = './assets/rock.jpeg'
+            checkWinDisp.innerText = pred
+        }else if(play === 'paper'){
+            player1Img.src = './assets/paper.jpg'
+            checkWinDisp.innerText = pred
+        }else if(play === 'scissors'){
+            player1Img.src = './assets/scissors.jpg'
+            checkWinDisp.innerText = pred
+        }
      }
 
 
@@ -160,7 +178,7 @@ function addRockpsToPage(){
 }
 
 function startRockps(){
-    div.classList.remove('#interface')
+    div.classList.remove('interface')
     div.classList.add('rockpsContainer')
 }
 
