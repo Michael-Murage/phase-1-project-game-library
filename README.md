@@ -19,16 +19,16 @@ What's not working:
 
 Summary:
 What's working:
-> Player vs player
-> Functionality
-> Reviews and description
-> Scores tally
+-> Player vs player
+-> Functionality
+-> Reviews and description
+-> Scores tally
 
 What's not working:
-> Player vs computer/AI
-> A few minor bugs
+-> Player vs computer/AI
+-> A few minor bugs
 
 3. Air hockey - This was supposed to be a game whereby one player moves their dodger/plate using the letters 'a' and 'd' while the other moves theirs using arrowleft key and arrowright key and prevent the ball from hitting the surface below their dodger/plate which would count as a win for the opponent and a loss to the other. I am not taking it out so that it can act as a reference on how to implement it better in the future.
 
 Summary:
-> This is a work in progress
+-> This is a work in progress
