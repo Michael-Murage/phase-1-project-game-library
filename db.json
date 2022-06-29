@@ -1,22 +1,4 @@
 {
-  "Rock-paper-scissors-scores": [
-    {
-      "id": 1,
-      "Player": "Won at Fri Jun 24 2022 04:46:01 GMT+0300 (East Africa Time)"
-    },
-    {
-      "Player": "Lost at Fri Jun 24 2022 07:03:12 GMT+0300 (East Africa Time)",
-      "id": 2
-    },
-    {
-      "Player": "Is a draw at Fri Jun 24 2022 07:06:48 GMT+0300 (East Africa Time)",
-      "id": 3
-    },
-    {
-      "Player": "Is a draw at Fri Jun 24 2022 07:44:21 GMT+0300 (East Africa Time)",
-      "id": 4
-    }
-  ],
   "Rockps-description": {
     "desc": "The game is of simple pick procedure between ROCK, PAPER and SCISSORS. Rock wins against scissors and loses against paper. Paper loses against scissors wins against rock. Scissors wins against paper loses against rock"
   },
@@ -45,6 +27,11 @@
       "user": "Final review",
       "time": "Fri Jun 24 2022 08:06:29 GMT+0300 (East Africa Time)",
       "id": 5
+    },
+    {
+      "user": "dummy review",
+      "time": "Fri Jun 24 2022 16:32:51 GMT+0300 (East Africa Time)",
+      "id": 6
     }
   ],
   "Tic-tac-toe-scores": [
@@ -63,6 +50,22 @@
     {
       "O": "Won at Fri Jun 24 2022 05:00:55 GMT+0300 (East Africa Time)",
       "id": 4
+    },
+    {
+      "X": "Won at Fri Jun 24 2022 14:53:35 GMT+0300 (East Africa Time)",
+      "id": 5
+    },
+    {
+      "O": "Won at Fri Jun 24 2022 15:28:37 GMT+0300 (East Africa Time)",
+      "id": 6
+    },
+    {
+      "X": "Won at Fri Jun 24 2022 15:50:21 GMT+0300 (East Africa Time)",
+      "id": 7
+    },
+    {
+      "X": "Won at Fri Jun 24 2022 16:35:02 GMT+0300 (East Africa Time)",
+      "id": 8
     }
   ],
   "Tic-tac-toe-description": {
@@ -78,6 +81,11 @@
       "user": "not bad",
       "time": "Fri Jun 24 2022 06:27:42 GMT+0300 (East Africa Time)",
       "id": 2
+    },
+    {
+      "user": "review",
+      "time": "Fri Jun 24 2022 16:37:15 GMT+0300 (East Africa Time)",
+      "id": 3
     }
   ]
 }
