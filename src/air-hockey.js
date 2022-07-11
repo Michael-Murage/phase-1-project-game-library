@@ -1,28 +1,29 @@
 select.addEventListener('click', unHideMenu)
+let hockeyGrid = document.getElementById('hockey-grid')
+
 let timer
 let xDir = 2
 let yDir = 2
 hockey.addEventListener('click', ()=>{
-    startAirHockey()
     hideMenu()
     const blockPlate1 = document.createElement('div')
     blockPlate1.id = 'plate1'
     blockPlate1.style.left = '46%'
     blockPlate1.style.bottom = '100%'
-    div.appendChild(blockPlate1)
+    hockeyGrid.appendChild(blockPlate1)
 
     const blockPlate2 = document.createElement('div')
     blockPlate2.id = 'plate2'
     blockPlate2.style.left = '46%'
     blockPlate1.style.bottom = '0%'
-    div.appendChild(blockPlate2)
+    hockeyGrid.appendChild(blockPlate2)
 
     const ballPos = [49, 4]
     let currentPos = [...ballPos]
     const ball = document.createElement('div')
     ball.classList.add('ball')
     placeball(ball, currentPos)
-    div.appendChild(ball);
+    hockeyGrid.appendChild(ball);
     
     timer = setInterval( (function(){
         currentPos[0] += xDir
@@ -101,9 +102,7 @@ function movePlayer(e){
     }
 }
 
-function startAirHockey(){
-    div.id = 'hockey-grid'
-}
+
 
 
 

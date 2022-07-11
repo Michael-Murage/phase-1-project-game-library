@@ -1,3 +1,7 @@
+* {
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+  }
 #header{
     text-align: center;
 }
@@ -18,34 +22,32 @@ body{
 #air-hockey{
     background-color: blanchedalmond;
 }
-.interface{
-    width: 70%;
-    margin: auto;
-    height: 25rem;
-    background-color: white;
-}
-.form{
-    display: block;
-}
+
 .hidden{
     display: none;
 }
+.parentDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .parentGrid {
     display: grid;
-    /* width: 70%;
-    height: 30rem; */
+    width: 70%;
+    height: 30rem;
     grid-template-columns: repeat(auto-fit, 33.333333333%);
 }
+
   .box {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: xx-large;
+    border: 3px solid black;
+    box-sizing: border-box;
   }
-
-
-.box:nth-child(even){
-    background-color: #eee;
+.ticReviewForm{
+    height: 100px;
 }
 
 /*Rock paper scissors*/
@@ -135,6 +137,15 @@ body{
     position: absolute;
     bottom: 6%;
     left: 55%;
+}
+.rockForm, .ticForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+#rockSubmit{
+    max-width: 200px;
 }
 
 /*Air hockey*/

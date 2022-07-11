@@ -1,9 +1,10 @@
-// import axios from "axios";
 select.addEventListener('click', unHideMenu, {once:true})
 rockps.addEventListener('click', addRockpsToPage, {once:true})
 
+const rockContainer = document.querySelector('.rockpsContainer')
+const rockpsdesc = document.querySelector('#rockpsdesc')
+const rockReview = document.getElementById('rockReview')
 
-// const rockpsContainer = document.getElementById('interface')
 let player1Disp, player1Score, player2Disp, player2Score, player1Img, player2Img,
 player1Rock, player1Paper, player1Sciss, player2Rock, player2Paper, player2Sciss,
 player1ImgDisp, player2ImgDisp, checkWinDisp
@@ -40,77 +41,73 @@ function addRockpsToPage(){
     player1Disp = document.createElement('p')
     player1Disp.id = 'rockps-player1'
     player1Disp.textContent = 'Computer: '
-    div.appendChild(player1Disp)
+    rockContainer.appendChild(player1Disp)
 
     player2Disp = document.createElement('p')
     player2Disp.id = 'rockps-player2'
     player2Disp.textContent = 'Player :'
-    div.appendChild(player2Disp)
+    rockContainer.appendChild(player2Disp)
 
     player1Score = document.createElement('p')
     player1Score.id = 'rockps-player1-score'
     player1Score.textContent = '0'
-    div.appendChild(player1Score)
+    rockContainer.appendChild(player1Score)
 
     player2Score = document.createElement('p')
     player2Score.id = 'rockps-player2-score'
     player2Score.textContent = '0'
-    div.appendChild(player2Score)
+    rockContainer.appendChild(player2Score)
 
     player1ImgDisp = document.createElement('img')
     player1ImgDisp.id = 'player1-img'
-    // player1ImgDisp.style.width = `200` + `px`
-    // player1ImgDisp.style.height = `200` + `px`
-    div.appendChild(player1ImgDisp)
+    rockContainer.appendChild(player1ImgDisp)
 
     player2ImgDisp = document.createElement('img')
     player2ImgDisp.id = 'player2-img'
-    // player2ImgDisp.style.width = `200` + `px`
-    // player2ImgDisp.style.height = `200` + `px`
-    div.appendChild(player2ImgDisp)
+    rockContainer.appendChild(player2ImgDisp)
 
     player1Rock = document.createElement('button')
     player1Rock.id = 'rock-button1'
     player1Rock.classList.add('rps-buttons')
     player1Rock.textContent = 'Rock'
-    div.appendChild(player1Rock)
+    rockContainer.appendChild(player1Rock)
 
     player2Rock = document.createElement('button')
     player2Rock.id = 'rock-button2'
     player2Rock.classList.add('rps-buttons')
     player2Rock.textContent = 'Rock'
-    div.appendChild(player2Rock)
+    rockContainer.appendChild(player2Rock)
 
     player1Paper = document.createElement('button')
     player1Paper.id = 'paper-button1'
     player1Paper.classList.add('rps-buttons')
     player1Paper.textContent = 'Paper'
-    div.appendChild(player1Paper)
+    rockContainer.appendChild(player1Paper)
 
     player2Paper = document.createElement('button')
     player2Paper.id = 'paper-button2'
     player2Paper.classList.add('rps-buttons')
     player2Paper.textContent = 'Paper'
-    div.appendChild(player2Paper)
+    rockContainer.appendChild(player2Paper)
 
     player1Sciss = document.createElement('button')
     player1Sciss.id = 'sciss-button1'
     player1Sciss.classList.add('rps-buttons')
     player1Sciss.textContent = 'Sciss'
-    div.appendChild(player1Sciss)
+    rockContainer.appendChild(player1Sciss)
 
     player2Sciss = document.createElement('button')
     player2Sciss.id = 'sciss-button2'
     player2Sciss.classList.add('rps-buttons')
     player2Sciss.textContent = 'Sciss'
-    div.appendChild(player2Sciss)
+    rockContainer.appendChild(player2Sciss)
 
     checkWinDisp = document.createElement('p')
     checkWinDisp.id = 'checkWinDisp'
     checkWinDisp.textContent = 'Whenever you\'re ready...'
-    div.appendChild(checkWinDisp)
+    rockContainer.appendChild(checkWinDisp)
 
-    fetch("http://localhost:3000/Rockps-description", {
+    fetch("https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db/", {
         method: "GET",
         headers:
         {
@@ -120,7 +117,7 @@ function addRockpsToPage(){
     })
     .then(resp => resp.json())
     .then(json =>{
-        desc.innerText = `${desc.innerText} ${json.desc}`
+        rockpsdesc.innerText = `${rockpsdesc.innerText} ${json['Rockps-description'].desc}`
     })
 
     player1Img = document.getElementById('player1-img')
@@ -161,15 +158,15 @@ function addRockpsToPage(){
         })
         .then(resp => resp.json())
         .then(json=>{
-            console.log(json.ai.name)
+            console.log(json.ai)
             let predicament = json.result
             console.log(predicament)
             aiChoice(json.ai.name, json.result)
             feedScore(predicament)
         })
         .catch(err => console.error(err))
-        //compChoice()
-        //results()
+        /* compChoice() 
+          results() */
      }))
 
      //Evaluates what image to be displayed after the API AI has made its decision
@@ -251,12 +248,11 @@ function addRockpsToPage(){
 
 // Adds the game "container" and fetches game description
 function startRockps(){
-    div.classList.remove('interface')
-    div.classList.add('rockpsContainer')
+    let form = document.querySelector('.rockForm')
 
     form.addEventListener('submit', (e)=>{
         e.preventDefault()
-        fetch("http://localhost:3000/Rockps-reviews", {
+        fetch("https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db/", {
             method: "POST",
             headers:
             {
@@ -264,7 +260,7 @@ function startRockps(){
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                "user": `${review.value}`,
+                "user": `${rockReview.value}`,
                 "time": `${Date()}`
             })
             })

@@ -1,14 +1,19 @@
-const div = document.querySelector('.interface')
+const div = document.querySelector('.parentGrid')
 const select = document.getElementById('select')
 const tic = document.getElementById('tic-tac-toe')
 const rockps = document.getElementById('rock-ps')
 const hockey = document.getElementById('air-hockey')
 const header = document.getElementById('header')
-const review = document.getElementById('review')
-const submit = document.getElementById('submit')
-const form = document.querySelector('form')
+const ticReview = document.getElementById('ticReview')
+const rockpsReview = document.getElementById('rockReview')
+const ticSubmit = document.getElementById('ticSubmit')
+const rockSubmit = document.getElementById('rockSubmit')
+const ticForm = document.querySelector('.ticForm')
+const rockForm = document.querySelector('.rockForm')
 
-select.addEventListener('click', unHideMenu, {once:true})
+const ticdesc = document.getElementById('ticdesc')
+
+select.addEventListener('click', unHideMenu)
 
 //hide or unhide dropdown menu
 function unHideMenu(){
@@ -26,19 +31,20 @@ function hideMenu(){
 let one, two, three, four, five, six, seven, eight, nine, xturn;
 
 // Havent found a place for this function yet
-function stopTictactoe(){
-    div.classList.remove('parentGrid')
-    div.classList.add('interface')
-}
+// function stopTictactoe(){
+//     div.classList.remove('parentGrid')
+//     div.classList.add('interface')
+// }
 
 // Displays the grid for the game along with the game description
 function startTictactoe(){
-    div.classList.remove('interface')
-    div.classList.add('parentGrid')
+    // div.classList.remove('interface')
+    // div.classList.add('parentGrid')
 
-    form.addEventListener('submit', (e)=>{
+    /*fetch has an issue in deployed state */
+    ticForm.addEventListener('submit', (e)=>{
         e.preventDefault()
-        fetch("http://localhost:3000/Tic-tac-toe-reviews", {
+        fetch("https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db/Tic-tac-toe-reviews", {
             method: "POST",
             headers:
             {
@@ -46,7 +52,7 @@ function startTictactoe(){
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                "user": `${review.value}`,
+                "user": `${ticReview.value}`,
                 "time": `${Date()}`
             })
             })
@@ -57,7 +63,7 @@ function startTictactoe(){
             })
             .catch(err => {console.error(err)})
 
-        form.reset()
+        ticForm.reset()
     })
 }
 
@@ -68,12 +74,12 @@ tic.addEventListener('click', addTictactoeToPage, {once:true})
 function addTictactoeToPage(){
     startTictactoe()
     for(let i=1; i<=9; i++){
-    let box = document.createElement('div')
-    box.id = `${i}`
-    box.classList.add('box')
-    div.appendChild(box)
+        let box = document.createElement('div')
+        box.id = `${i}`
+        box.classList.add('box')
+        div.appendChild(box)
     }
-
+    
     let container = document.querySelector('.parentGrid')
     container.style.width = '30rem'
     container.style.height = '30rem'
@@ -85,13 +91,13 @@ function addTictactoeToPage(){
 
     
     hideMenu()
-    fetch('http://localhost:3000/Tic-tac-toe-description', {
+    fetch('https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db', {
             method: "GET",
             headers: requestHeaders
         })
         .then(resp => resp.json())
         .then(json=>{
-           desc.innerText = `${desc.innerText} ${json.desc}`
+           ticdesc.innerText = `${ticdesc.innerText} ${json['Tic-tac-toe-description'].desc}`
         })
         .catch(err => console.error(err))
 
@@ -104,6 +110,7 @@ function addTictactoeToPage(){
     seven = document.getElementById('7')
     eight = document.getElementById('8')
     nine = document.getElementById('9')
+    boxStyling()
 
     let boxes = document.querySelectorAll('.box')
     boxes.forEach(box => {
@@ -144,7 +151,7 @@ function addTictactoeToPage(){
         two.innerText==='O' && five.innerText==='O' && eight.innerText==='O' ||
         four.innerText==='O' && five.innerText==='O' && six.innerText==='O' ){
             state.innerText = 'O wins'
-            fetch("http://localhost:3000/Tic-tac-toe-scores", {
+            fetch("https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db/Tic-tac-toe-scores", {
             method: "POST",
             headers:
             {
@@ -173,7 +180,7 @@ function addTictactoeToPage(){
         two.innerText==='X' && five.innerText==='X' && eight.innerText==='X' ||
         four.innerText==='X' && five.innerText==='X' && six.innerText==='X' ){
             state.innerText = 'X wins'
-            fetch("http://localhost:3000/Tic-tac-toe-scores", {
+            fetch("https://my-json-server.typicode.com/Michael-Murage/phase-1-project-game-library/db/Tic-tac-toe-scores", {
             method: "POST",
             headers:
             {
@@ -193,4 +200,19 @@ function addTictactoeToPage(){
         }
 
     }
+}
+
+function boxStyling(){
+    one.style.borderTop = 'none'
+    one.style.borderLeft = 'none'
+    two.style.borderTop = 'none'
+    three.style.borderTop = 'none'
+    three.style.borderRight = 'none'
+    four.style.borderLeft = 'none'
+    six.style.borderRight = 'none'
+    seven.style.borderLeft = 'none'
+    seven.style.borderBottom = 'none'
+    eight.style.borderBottom = 'none'
+    nine.style.borderBottom = 'none'
+    nine.style.borderRight = 'none'
 }

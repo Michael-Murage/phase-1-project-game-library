@@ -12,25 +12,45 @@
     
     <button id="select">Pick one option below:</button>
     <div class="menu">
-        <button class="menu hidden" id="tic-tac-toe">Tic tac toe</button>
-        <button class="menu hidden" id="rock-ps">Rock paper scissors</button>
-        <button class="menu hidden" id="air-hockey">Air-hockey</button>
+        <button class="menu hidden" id="tic-tac-toe">Start tic tac toe</button>
+        <button class="menu hidden" id="rock-ps">Start rock paper scissors</button>
+        <button class="menu hidden" id="air-hockey">Start air-hockey</button>
     </div>
-    <div class="interface">
-
+    <div class="parentDiv">
+        <div class="parentGrid"></div>
     </div>
-    <p id="desc">Game description:</p>
+    <p id="ticdesc">Game description:</p>
+    <div class="ticReviewForm">
+        <form class="ticForm"> 
+            <label for="review" class="form">You can leave your review here:</label>
+            <textarea id="ticReview" class="form"></textarea>
+            <input type="submit" id="ticSubmit" class="form">
+        </form>
+        <br><br>
+    </div>
+    <div>
+        <div class="rockpsContainer"></div>
+        <p id="rockpsdesc">Game description:</p>
+        <form class="rockForm"> 
+            <label for="review" class="form">You can leave your review here:</label>
+            <textarea id="rockReview" class="form"></textarea>
+            <input type="submit" id="rockSubmit" class="form">
+        </form>
+        <div id="hockey-grid"></div>
+        <br><br>
+    </div>
+    <!-- <p id="desc">Game description:</p>
 
     <form class="form"> 
         <label for="review" class="form">You can leave your review here:</label>
-        <textarea id="review" class="form"></textarea>
-        <input type="submit" id="submit" class="form">
-    </form>
+        <textarea id="hockeyReview" class="form"></textarea>
+        <input type="submit" id="hockeySubmit" class="form">
+    </form> -->
     <script src="./src/tic.js"></script>
     <script src="./src/rockps.js"></script>
     <script src="./src/air-hockey.js"></script>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.7.0/qs.min.js"></script> -->
 </body>
 </html>
